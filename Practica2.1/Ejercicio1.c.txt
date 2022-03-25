@@ -1,0 +1,41 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+
+extern int errno;
+
+int main(int argc, char **argv)
+{
+    struct addrinfo hints;
+    struct addrinfo *res;
+
+    memset(&hints, NULL, sizeof(struct addrinfo));
+
+    hints.ai_flags    = AF_UNSPEC; 
+    hints.ai_family   = AF_UNSPEC; 
+
+    int sol = getaddrinfo(argv[1], argv[2], &hints, &res);
+
+    if(sol != 0) //Si da error
+    {
+        fprintf(stderr, "Error: %s\n", strerror(errno));
+    }
+    else
+    {
+        fprintf(stderr, "Exito: \n");
+
+        for (struct addrinfo *i = res; i != NULL; i = i->ai_next)
+	    {
+		    char host[NI_MAXHOST];
+		    char server[NI_MAXSERV];
+		    getnameinfo(i->ai_addr, i->ai_addrlen, host, NI_MAXHOST, server, NI_MAXSERV, NI_NUMERICHOST | NI_NUMERICSERV);
+
+            fprintf(stderr, "%s %s %d \n", host, res->ai_family, res->ai_socktype);
+	    }
+    }
+
+    return 0;
+}
