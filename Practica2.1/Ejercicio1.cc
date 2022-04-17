@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 
             getnameinfo(i->ai_addr, i->ai_addrlen, host, NI_MAXHOST, server, NI_MAXSERV, NI_NUMERICHOST);
 
-            printf("%s %s %d \n", host, res->ai_family, res->ai_socktype);
+            printf("%s %d %d \n", host, res->ai_family, res->ai_socktype);
         }
     }
 
