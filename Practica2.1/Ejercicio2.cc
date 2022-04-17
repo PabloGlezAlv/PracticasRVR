@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 		case 't': //LA HORA
 			time(&tiempo);
 
-			size = strftime(buffer, MAXBUFFER - 1, "%p", localtime(&tiempo));
+			size = strftime(buffer, MAXBUFFER - 1, "%r", localtime(&tiempo));
 			sendto(sd, buffer, size, 0, &client, clientLen);
 
 			buffer[size] = '\0';
