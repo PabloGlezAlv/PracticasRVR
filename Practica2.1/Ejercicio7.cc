@@ -57,7 +57,7 @@ public:
 
 int main(int argc, char** argv) {
 	if (argc != 3) {
-		std::cerr << "Uso: ./Ejercicio7 [IP] [puerto]\n";
+		printf("Numero incorrecto de argumentos\n");
 		return -1;
 	}
 
