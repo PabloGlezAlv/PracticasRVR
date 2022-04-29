@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     one_w.to_bin();
 
     // 2. Escribir la serialización en un fichero
-    int archivo = open("player.txt", O_CREAT | O_TRUNC, 0666);
+    int archivo = open("player.txt", O_CREAT | O_WRONLY | O_TRUNC, 0666);
 
     ssize_t size = write(archivo, one_w.data(), one_w.size());
 
